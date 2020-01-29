@@ -11,7 +11,8 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      user: {}
+      user: {},
+      userRepos: {}
     };
   }
 
@@ -27,6 +28,7 @@ class App extends React.Component {
     axios
       .get(`https://api.github.com/users/${name}`)
       .then(res => {
+        console.log(res);
         this.setState({
           user: {
             username: res.data.login,
@@ -34,13 +36,28 @@ class App extends React.Component {
             html_url: res.data.html_url,
             name: res.data.name,
             bio: res.data.bio,
-            location: res.data.location
+            location: res.data.location,
+            public_repos: res.data.public_repos,
+            following: res.data.following,
+            followers: res.data.followers,
+            created_at: res.data.created_at,
+            blog: res.data.blog
           }
         });
       })
 
       .catch(err => {
         console.log(err);
+      });
+    axios
+      .get(`https://api.github.com/users/${name}/repos?per_page=100`)
+      .then(res => {
+        console.log(res.data);
+        this.setState({
+          userRepo: {
+            ...res.data
+          }
+        });
       });
   };
 

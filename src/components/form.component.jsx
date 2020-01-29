@@ -23,7 +23,6 @@ const Form = props => {
       >
         Search
       </Button>
-      {/* <button onClick={props.loadUser}>Fetch data</button> */}
     </div>
   );
 };
