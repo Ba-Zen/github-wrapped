@@ -16,7 +16,11 @@ class App extends React.Component {
   }
 
   getUser = e => {
-    const name = e.target.name.value;
+    const removeWhitespace = field => {
+      return field.replace(/\s/g, '');
+    };
+
+    const name = removeWhitespace(e.target.name.value);
 
     e.preventDefault();
 

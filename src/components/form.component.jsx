@@ -1,14 +1,30 @@
 import React from 'react';
+import { Input, Button } from '@chakra-ui/core';
+import './form.styles.scss';
 
 const Form = props => {
   console.log(props);
   return (
-    <>
-      <form onSubmit={props.loadUser}>
-        <input type='text' placeholder='enter a username' name='name' />
+    <div className='search'>
+      <form onSubmit={props.loadUser} autocomplete='off'>
+        <Input
+          type='text'
+          placeholder='enter a username'
+          name='name'
+          variant='outline'
+          isFullWidth={false}
+        />
       </form>
-      <button onClick={props.loadUser}>Fetch data</button>
-    </>
+      <Button
+        rightIcon='search'
+        variantColor='pink'
+        variant='solid'
+        onClick={props.loadUser}
+      >
+        Search
+      </Button>
+      {/* <button onClick={props.loadUser}>Fetch data</button> */}
+    </div>
   );
 };
 
