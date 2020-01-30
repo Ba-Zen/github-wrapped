@@ -6,7 +6,7 @@ const Form = props => {
   console.log(props);
   return (
     <div className='search'>
-      <form onSubmit={props.loadUser} autocomplete='off'>
+      <form onSubmit={props.loadUser} autoComplete='off'>
         <Input
           type='text'
           placeholder='enter a username'

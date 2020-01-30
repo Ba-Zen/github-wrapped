@@ -12,7 +12,7 @@ class App extends React.Component {
 
     this.state = {
       user: {},
-      userRepos: {}
+      userRepos: []
     };
   }
 
@@ -28,7 +28,6 @@ class App extends React.Component {
     axios
       .get(`https://api.github.com/users/${name}`)
       .then(res => {
-        console.log(res);
         this.setState({
           user: {
             username: res.data.login,
@@ -52,9 +51,10 @@ class App extends React.Component {
     axios
       .get(`https://api.github.com/users/${name}/repos?per_page=100`)
       .then(res => {
-        console.log(res.data);
+        console.log(res.data.language);
+
         this.setState({
-          userRepo: {
+          userRepos: {
             ...res.data
           }
         });
@@ -62,12 +62,12 @@ class App extends React.Component {
   };
 
   render() {
-    const { user } = this.state;
+    const { user, userRepos } = this.state;
     return (
       <div className='App'>
         <h1>Github Wrapped</h1>
         <Form loadUser={this.getUser} />
-        <GitHub user={user} />
+        <GitHub user={user} userRepos={userRepos} />
       </div>
     );
   }
